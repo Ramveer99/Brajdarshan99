@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Manrope:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0b1030;
+  --color-ink-2: #131a44;
+  --color-ink-3: #1c2258;
+  --color-parchment: #f6efdd;
+  --color-parchment-2: #ede2c4;
+  --color-cream: #fbf6ea;
+  --color-gold: #c9a24a;
+  --color-gold-2: #e8c877;
+  --color-gold-3: #a67f2f;
+  --color-saffron: #d97a2a;
+  --color-terracotta: #8a3324;
+  --color-leaf: #3d5a3d;
+  --color-rose: #a4324a;
+  --color-ink-muted: color-mix(in srgb, var(--color-ink) 50%, transparent);
+  --color-ink-soft: color-mix(in srgb, var(--color-ink) 70%, transparent);
+  --color-ink-body: color-mix(in srgb, var(--color-ink) 80%, transparent);
+  --color-cream-muted: color-mix(in srgb, var(--color-cream) 50%, transparent);
+  --color-cream-soft: color-mix(in srgb, var(--color-cream) 70%, transparent);
+  --color-cream-strong: color-mix(in srgb, var(--color-cream) 95%, transparent);
+  --color-river: #8ab6ff;
+  --color-river-deep: #3b6dcf;
+  --font-serif: 'Fraunces', serif;
+  --font-display: 'Fraunces', serif;
+  --font-sans: 'Manrope', sans-serif;
+  --font-devanagari: 'Noto Serif Devanagari', serif;
+  /* Shared type scale — keep distinct sizes ≤ 10 on the homepage */
+  --text-2xs: 0.625rem;       /* 10px — micro labels */
+  --text-2xs--line-height: 1.4;
+  --text-caption: 0.75rem;    /* 12px — eyebrows, captions */
+  --text-caption--line-height: 1.45;
+  --text-ui: 0.75rem;         /* 12px — buttons, nav, section links */
+  --text-ui--line-height: 1.5;
+  --text-map: 0.75rem;        /* 12px — SVG map labels */
+  --text-map--line-height: 1.4;
+  --text-map-lg: 1.125rem;    /* 18px — SVG map titles */
+  --text-map-lg--line-height: 1.3;
+  --text-body-sm: 0.875rem;   /* 14px — card body, marquee */
+  --text-body-sm--line-height: 1.5;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-padding-top: 5rem;
+}
+
+html, body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.font-serif { font-family: var(--font-serif); }
+.font-display { font-family: var(--font-display); font-feature-settings: 'ss01'; }
+.font-devanagari { font-family: var(--font-devanagari); }
+
+/* Reusable CTA — “Plan your yatra” site-wide */
+.btn-yatra {
+  @apply inline-flex items-center gap-3 border-2 border-cream/70 bg-ink/55 backdrop-blur-sm px-8 h-14 text-ui tracking-[0.12em] text-cream hover:bg-cream hover:text-ink transition;
+}
+
+.btn-yatra--compact {
+  @apply h-10 gap-2 px-5;
+}
+
+/* Section archive / “view all” links */
+.section-link {
+  @apply inline-flex items-center gap-2 shrink-0 text-body-sm tracking-[0.12em] text-ink border-b-2 border-ink/30 pb-1 font-semibold hover:text-gold-3 hover:border-gold-3 transition-colors;
+}
+
+.section-link--dark {
+  @apply text-cream border-cream/30 hover:text-gold-2 hover:border-gold-2;
+}
+
+.hair-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,162,74,0.5), transparent);
+}
+
+.gold-underline {
+  background-image: linear-gradient(90deg, var(--color-gold), var(--color-gold-2));
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  background-position: 0 100%;
+}
+
+.paper-noise {
+  background-image:
+    radial-gradient(rgba(180,140,60,0.06) 1px, transparent 1px),
+    radial-gradient(rgba(180,140,60,0.04) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 1px;
+}
+
+.vignette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(11,16,48,0.75) 100%);
+  pointer-events: none;
+}
+
+.deep-shadow {
+  box-shadow: 0 30px 60px -30px rgba(11,16,48,0.35), 0 12px 24px -12px rgba(11,16,48,0.2);
+}
+
+.hover-lift {
+  transition: transform 400ms cubic-bezier(.2,.7,.2,1), box-shadow 400ms;
+}
+.hover-lift:hover { transform: translateY(-4px); }
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 40s linear infinite; }
+
+/* Scroll cue */
+@keyframes scrollcue {
+  0% { transform: translateY(0); opacity: 0.9; }
+  50% { transform: translateY(6px); opacity: 0.4; }
+  100% { transform: translateY(0); opacity: 0.9; }
+}
+.scroll-cue { animation: scrollcue 1.8s ease-in-out infinite; }
+
+/* Map marker idle pulse — signals interactivity without hover */
+@keyframes marker-pulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.5; }
+}
+.marker-pulse { animation: marker-pulse 2.4s ease-in-out infinite; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb { background: rgba(201,162,74,0.5); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(201,162,74,0.8); }
+
+/* Selection */
+::selection { background: var(--color-gold); color: var(--color-ink); }
+
+/* Focus */
+:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; border-radius: 4px; }
+
+/* Ornamental symbol */
+.ornament::before, .ornament::after {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  background: currentColor;
+  vertical-align: middle;
+  margin: 0 12px;
+  opacity: 0.5;
+}
