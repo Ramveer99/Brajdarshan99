@@ -397,6 +397,7 @@ import DestinationCard from '../components/DestinationCard';
 import ExperienceCard from '../components/ExperienceCard';
 import BrajMap from '../components/BrajMap';
 import { apiGet } from '../lib/api';
+import { withBase } from '../lib/base';
 import {
   FEATURED_DESTINATIONS,
   FEATURED_EXPERIENCES,
@@ -451,7 +452,7 @@ export default function Home() {
       <section className="relative h-screen min-h-[720px] w-full overflow-hidden text-cream">
         <div className="absolute inset-0">
           <img
-            src="/images/hero.jpg"
+            src={withBase('/images/hero.jpg')}
             alt="Braj"
             className="w-full h-full object-cover"
           />
@@ -810,7 +811,7 @@ export default function Home() {
       <section className="relative py-32 md:py-44 bg-ink text-cream overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <img
-            src="/images/peacock.jpg"
+            src={withBase('/images/peacock.jpg')}
             alt=""
             className="w-full h-full object-cover"
           />
@@ -871,7 +872,7 @@ export default function Home() {
                   <Reveal key={i} delay={i * 0.06}>
                     <div className="relative aspect-[3/4] overflow-hidden group">
                       <img
-                        src={f.image}
+                        src={withBase(f.image)}
                         alt={f.name}
                         className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       />
@@ -930,13 +931,13 @@ export default function Home() {
           <Reveal delay={0.15} className="lg:col-span-6">
             <div className="grid grid-cols-2 gap-4">
               <img
-                src="/images/parikrama.jpg"
+                src={withBase('/images/parikrama.jpg')}
                 alt=""
                 className="aspect-[3/4] object-cover"
               />
 
               <img
-                src="/images/aarti.jpg"
+                src={withBase('/images/aarti.jpg')}
                 alt=""
                 className="aspect-[3/4] object-cover translate-y-8"
               />
@@ -987,7 +988,7 @@ export default function Home() {
                     >
                       <div className="aspect-[3/4] overflow-hidden bg-ink/5">
                         <img
-                          src={a.cover_image}
+                          src={withBase(a.cover_image)}
                           alt={a.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />

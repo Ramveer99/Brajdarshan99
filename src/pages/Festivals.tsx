@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { apiGet } from '../lib/api';
+import { withBase } from '../lib/base';
 import Loading from '../components/Loading';
 import Reveal from '../components/Reveal';
 
@@ -32,7 +33,7 @@ export default function Festivals() {
                 <Reveal key={i} delay={i * 0.03}>
                   <article className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-parchment/50 border border-ink/5 p-6 md:p-8">
                     <div className="lg:col-span-3 aspect-[4/3] overflow-hidden">
-                      <img src={f.image} alt={f.name} className="w-full h-full object-cover" />
+                      <img src={withBase(f.image)} alt={f.name} className="w-full h-full object-cover" />
                     </div>
                     <div className="lg:col-span-2 text-center lg:text-left">
                       <div className="text-[10px] tracking-[0.3em] uppercase text-gold-3">Month</div>

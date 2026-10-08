@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
+import { withBase } from '../lib/base';
 
 type Props = {
   slug: string;
@@ -20,7 +21,7 @@ export default function DestinationCard({ slug, name, nameHi, tagline, image, re
     >
       <div className="aspect-[4/5] w-full relative overflow-hidden">
         <img
-          src={image}
+          src={withBase(image)}
           alt={name}
           loading="lazy"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"

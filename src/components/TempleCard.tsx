@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
+import { withBase } from '../lib/base';
 
 type Props = {
   slug: string;
@@ -14,7 +15,7 @@ export default function TempleCard({ slug, name, nameHi, deity, destination, ima
   return (
     <Link to={`/temples/${slug}`} className="group flex items-center gap-5 p-4 bg-cream border border-ink/10 hover:border-gold/40 transition-all">
       <div className="w-24 h-24 flex-shrink-0 overflow-hidden">
-        <img src={image} alt={name} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+        <img src={withBase(image)} alt={name} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
       </div>
       <div className="flex-1 min-w-0">
         <div className="text-[10px] tracking-[0.25em] uppercase text-gold-3">{destination}</div>

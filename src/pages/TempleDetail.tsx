@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { apiGet } from '../lib/api';
+import { withBase } from '../lib/base';
 import Loading from '../components/Loading';
 import { ArrowLeft, Clock, MapPin, Sparkles } from 'lucide-react';
 
@@ -25,7 +26,7 @@ export default function TempleDetail() {
   return (
     <>
       <section className="relative h-[70vh] min-h-[500px] text-cream overflow-hidden">
-        <img src={t.image} alt={t.name} className="absolute inset-0 w-full h-full object-cover" />
+        <img src={withBase(t.image)} alt={t.name} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/40 to-ink" />
         <div className="relative z-10 h-full max-w-[1400px] mx-auto px-6 lg:px-10 flex flex-col justify-end pb-20">
           <Link to="/temples" className="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-cream/70 hover:text-gold-2 mb-6">

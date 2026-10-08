@@ -16,7 +16,7 @@ import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/braj">
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />

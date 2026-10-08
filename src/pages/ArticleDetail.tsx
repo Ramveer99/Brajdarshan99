@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { apiGet } from '../lib/api';
+import { withBase } from '../lib/base';
 import Loading from '../components/Loading';
 import { ArrowLeft } from 'lucide-react';
 
@@ -18,7 +19,7 @@ export default function ArticleDetail() {
   return (
     <>
       <section className="relative h-[70vh] min-h-[500px] overflow-hidden text-cream">
-        <img src={a.cover_image} alt={a.title} className="absolute inset-0 w-full h-full object-cover" />
+        <img src={withBase(a.cover_image)} alt={a.title} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/50 to-ink" />
         <div className="relative z-10 h-full max-w-4xl mx-auto px-6 lg:px-10 flex flex-col justify-end pb-20">
           <Link to="/journal" className="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-cream/70 hover:text-gold-2 mb-6">

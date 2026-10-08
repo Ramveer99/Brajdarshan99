@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { apiGet } from '../lib/api';
+import { withBase } from '../lib/base';
 import Loading from '../components/Loading';
 import Reveal from '../components/Reveal';
 import { Route, Clock, Mountain } from 'lucide-react';
@@ -35,7 +36,7 @@ export default function RoutesPage() {
                   <article className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-parchment paper-noise p-8 border border-ink/5">
                     <div className="lg:col-span-4">
                       <div className="aspect-[4/3] overflow-hidden">
-                        <img src={r.image} alt={r.name} className="w-full h-full object-cover" />
+                        <img src={withBase(r.image)} alt={r.name} className="w-full h-full object-cover" />
                       </div>
                     </div>
                     <div className="lg:col-span-8">

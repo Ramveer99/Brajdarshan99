@@ -48,7 +48,11 @@ export function apiDevPlugin(envVars = {}) {
       Object.assign(process.env, envVars);
 
       server.middlewares.use(async (req, res, next) => {
-        const rawUrl = req.url || '';
+        let rawUrl = req.url || '';
+        // App is served under /braj, so API calls arrive as /braj/api/...
+        if (rawUrl === '/braj' || rawUrl.startsWith('/braj/')) {
+          rawUrl = rawUrl.slice('/braj'.length) || '/';
+        }
         if (!rawUrl.startsWith('/api/')) return next();
 
         const [pathname, queryString = ''] = rawUrl.split('?');

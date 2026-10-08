@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { apiGet } from '../lib/api';
+import { withBase } from '../lib/base';
 import Loading from '../components/Loading';
 import Reveal from '../components/Reveal';
 
@@ -35,7 +36,7 @@ export default function Journal() {
                 <Reveal>
                   <Link to={`/journal/${featured.slug}`} className="group grid grid-cols-1 lg:grid-cols-12 gap-10 bg-cream border border-ink/10 hover:border-gold/40 transition">
                     <div className="lg:col-span-7 aspect-[4/3] overflow-hidden">
-                      <img src={featured.cover_image} alt={featured.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+                      <img src={withBase(featured.cover_image)} alt={featured.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
                     </div>
                     <div className="lg:col-span-5 p-8 lg:pr-10 lg:py-14 flex flex-col justify-center">
                       <div className="text-[10px] tracking-[0.3em] uppercase text-gold-3">Featured · {featured.category}</div>
@@ -52,7 +53,7 @@ export default function Journal() {
                   <Reveal key={a.slug} delay={i * 0.05}>
                     <Link to={`/journal/${a.slug}`} className="group block">
                       <div className="aspect-[4/3] overflow-hidden">
-                        <img src={a.cover_image} alt={a.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                        <img src={withBase(a.cover_image)} alt={a.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                       </div>
                       <div className="pt-5">
                         <div className="text-[10px] tracking-[0.3em] uppercase text-gold-3">{a.category}</div>

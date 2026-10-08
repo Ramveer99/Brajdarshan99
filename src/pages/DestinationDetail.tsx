@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { apiGet } from '../lib/api';
+import { withBase } from '../lib/base';
 import Loading from '../components/Loading';
 import Reveal from '../components/Reveal';
 import TempleCard from '../components/TempleCard';
 import { Calendar, MapPin, Clock, Compass, ArrowRight, ArrowLeft } from 'lucide-react';
+import { DESTINATION_PAGES, FEATURED_EXPERIENCES } from '../data/fallbackContent';
 
 type D = {
   slug: string; name: string; name_hi: string; tagline: string; hero_image: string;
@@ -31,7 +33,18 @@ export default function DestinationDetail() {
       apiGet<E[]>(`/api/experiences?location=${slug}`),
     ])
       .then(([dest, t, e]) => { setD(dest); setTemples(t); setExperiences(e); })
-      .catch(() => setError(true))
+      .catch(() => {
+        const local = DESTINATION_PAGES.find((item) => item.slug === slug);
+        if (!local) {
+          setError(true);
+          return;
+        }
+        setD(local);
+        setTemples([]);
+        setExperiences(
+          FEATURED_EXPERIENCES.filter((item) => item.location.toLowerCase() === local.name.toLowerCase()),
+        );
+      })
       .finally(() => setLoading(false));
   }, [slug]);
 
@@ -47,7 +60,7 @@ export default function DestinationDetail() {
     <>
       {/* Hero */}
       <section className="relative h-[85vh] min-h-[600px] w-full overflow-hidden text-cream">
-        <img src={d.hero_image} alt={d.name} className="absolute inset-0 w-full h-full object-cover" />
+        <img src={withBase(d.hero_image)} alt={d.name} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/30 to-ink" />
         <div className="relative z-10 h-full max-w-[1400px] mx-auto px-6 lg:px-10 flex flex-col justify-end pb-20">
           <Link to="/destinations" className="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-cream/70 hover:text-gold-2 mb-6">
@@ -116,7 +129,7 @@ export default function DestinationDetail() {
               {d.gallery.map((g, i) => (
                 <Reveal key={i} delay={i * 0.05}>
                   <div className={`overflow-hidden ${i % 3 === 0 ? 'aspect-[3/4]' : 'aspect-square'}`}>
-                    <img src={g} alt="" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                    <img src={withBase(g)} alt="" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
                   </div>
                 </Reveal>
               ))}

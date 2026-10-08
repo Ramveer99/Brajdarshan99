@@ -1,4 +1,5 @@
 import { Clock, MapPin } from 'lucide-react';
+import { withBase } from '../lib/base';
 
 type Props = {
   title: string;
@@ -13,7 +14,7 @@ export default function ExperienceCard({ title, category, duration, location, de
   return (
     <article className="group flex flex-col h-full bg-cream border border-ink/10 hover:border-gold/50 transition-colors overflow-hidden hover-lift">
       <div className="aspect-[4/3] overflow-hidden shrink-0">
-        <img src={image} alt={title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        <img src={withBase(image)} alt={title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
       </div>
       <div className="p-6 flex flex-col flex-1">
         <div className="text-2xs tracking-[0.3em] uppercase text-gold-3 mb-3">{category}</div>
