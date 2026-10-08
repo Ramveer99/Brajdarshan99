@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { apiGet, apiPost } from '../lib/api';
+import { apiGet } from '../lib/api';
+import { composePlan } from '../lib/composeYatra.js';
 import { Sparkles, ArrowRight, Check } from 'lucide-react';
-import Loading from '../components/Loading';
 import FadeIn from '../components/FadeIn';
 import Reveal from '../components/Reveal';
 import YatraResult, { type PlanDay } from '../components/YatraResult';
@@ -26,24 +26,14 @@ export default function YatraPlanner() {
   const [travelers, setTravelers] = useState(2);
   const [interests, setInterests] = useState<string[]>(['temples', 'aarti']);
   const [plan, setPlan] = useState<Plan[] | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
   useEffect(() => { apiGet<D[]>('/api/destinations').then(setDests).catch(() => {}); }, []);
 
   const toggle = (v: string) => setInterests((i) => i.includes(v) ? i.filter((x) => x !== v) : [...i, v]);
 
-  const submit = async () => {
-    setLoading(true);
-    setError('');
-    try {
-      const res = await apiPost<{ plan: Plan[] }>('/api/planner', { days, pilgrimType, start, travelers, interests });
-      if (!res.plan?.length) throw new Error('Empty plan');
-      setPlan(res.plan);
-      setStep(4);
-    } catch {
-      setError('The yatra could not be composed. Please try again.');
-    } finally { setLoading(false); }
+  const submit = () => {
+    setPlan(composePlan({ days, pilgrimType, start }));
+    setStep(4);
   };
 
   const interestOpts = [
@@ -93,7 +83,7 @@ export default function YatraPlanner() {
               </Reveal>
               <YatraResult plan={plan} />
             </div>
-          ) : loading ? <Loading label="Composing your yatra" /> : (
+          ) : (
             <div className="max-w-2xl">
               <div className="flex items-center gap-2 mb-10">
                 {[0, 1, 2, 3].map((s) => (
@@ -186,7 +176,6 @@ export default function YatraPlanner() {
                         <Sparkles className="w-4 h-4" /> Compose my yatra
                       </button>
                     </div>
-                    {error && <p className="mt-4 text-sm text-ink/70">{error}</p>}
                   </motion.div>
                 )}
               </AnimatePresence>
