@@ -25,7 +25,7 @@ export default function Experiences() {
       <section className="bg-ink text-cream pt-40 pb-24">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="text-[11px] tracking-[0.35em] uppercase text-gold-2 mb-6">Curated Experiences</div>
-          <h1 className="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-5xl">
+          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-5xl">
             Not sights. <em className="italic text-gold-2">Encounters.</em>
           </h1>
           <p className="mt-8 font-serif text-lg text-cream/70 max-w-2xl leading-relaxed">

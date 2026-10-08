@@ -52,12 +52,12 @@ export default function Header() {
           : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-        <div className={`flex items-center justify-between transition-all ${scrolled ? 'h-16' : 'h-20'}`}>
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
+        <div className={`flex items-center justify-between gap-3 transition-all ${scrolled ? 'h-16' : 'h-16 sm:h-20'}`}>
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10">
-              <svg viewBox="0 0 40 40" className="w-10 h-10">
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0">
+              <svg viewBox="0 0 40 40" className="w-full h-full">
                 <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" strokeWidth="0.75" className={scrolled ? 'text-ink/70' : 'text-cream/90'} />
                 <circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-gold" />
                 <path d="M20 8 C 24 14, 24 26, 20 32 C 16 26, 16 14, 20 8 Z" fill="currentColor" className="text-gold" />
@@ -65,14 +65,14 @@ export default function Header() {
               </svg>
             </div>
             <div className="leading-tight">
-              <div className={`font-display text-xl tracking-[0.24em] ${scrolled ? 'text-ink' : 'text-cream'}`}>BRAJ DARSHAN</div>
-              <div className={`text-2xs tracking-[0.35em] uppercase ${scrolled ? 'text-ink-muted' : 'text-cream-soft'}`}>— Uttar Pradesh, Bhārat</div>
+              <div className={`font-display text-sm sm:text-lg xl:text-xl tracking-[0.08em] sm:tracking-[0.16em] xl:tracking-[0.22em] whitespace-nowrap ${scrolled ? 'text-ink' : 'text-cream'}`}>BRAJ DARSHAN</div>
+              <div className={`text-[9px] sm:text-2xs tracking-[0.12em] sm:tracking-[0.22em] xl:tracking-[0.28em] uppercase whitespace-nowrap ${scrolled ? 'text-ink-muted' : 'text-cream-soft'}`}>— Uttar Pradesh, Bhārat</div>
             </div>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* Desktop Nav — full labels only fit once the viewport is wide */}
           <nav
-            className={`items-center gap-1 ${scrolled ? 'hidden' : 'hidden lg:flex'}`}
+            className="hidden xl:flex items-center gap-1"
             aria-label="Main navigation"
           >
             {nav.map((item) => (
@@ -131,13 +131,13 @@ export default function Header() {
           </nav>
 
           {/* Right actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <button aria-label="Search" className={`hidden sm:flex items-center justify-center w-10 h-10 rounded-full border transition ${scrolled ? 'border-ink/15 text-ink hover:bg-ink hover:text-cream' : 'border-cream/40 text-cream hover:bg-cream hover:text-ink'}`}>
               <Search className="w-4 h-4" />
             </button>
             <Link
               to="/planner"
-              className={`btn-yatra btn-yatra--compact hidden md:inline-flex ${
+              className={`btn-yatra btn-yatra--compact hidden xl:inline-flex whitespace-nowrap ${
                 scrolled ? '!bg-ink !border-ink hover:!bg-gold-3 hover:!border-gold-3' : ''
               }`}
             >
@@ -146,8 +146,9 @@ export default function Header() {
             </Link>
             <button
               aria-label="Menu"
+              aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className={`${scrolled ? 'flex' : 'lg:hidden flex'} items-center justify-center w-10 h-10 rounded-full border ${scrolled ? 'border-ink/20 text-ink' : 'border-cream/50 text-cream'}`}
+              className={`xl:hidden flex items-center justify-center w-10 h-10 rounded-full border ${scrolled ? 'border-ink/20 text-ink' : 'border-cream/50 text-cream'}`}
             >
               {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -162,9 +163,9 @@ export default function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className={`${scrolled ? '' : 'lg:hidden'} bg-cream border-t border-ink/10 overflow-hidden`}
+            className="xl:hidden bg-cream border-t border-ink/10 overflow-hidden"
           >
-            <div className="px-6 py-6 space-y-1 max-h-[80vh] overflow-y-auto">
+            <div className="px-4 sm:px-6 py-6 space-y-1 max-h-[80vh] overflow-y-auto">
               {nav.map((n) => (
                 <NavLink
                   key={n.to}
@@ -176,6 +177,10 @@ export default function Header() {
                   {n.label}
                 </NavLink>
               ))}
+              <Link to="/planner" className="btn-yatra !bg-ink !border-ink !text-cream mt-4 w-full xl:hidden">
+                Plan your yatra
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
               <div className="pt-4 text-caption tracking-[0.25em] uppercase text-ink-muted">Destinations</div>
               {destinations.map((d) => (
                 <Link key={d.slug} to={`/destinations/${d.slug}`} className="block py-2 text-ink/80 hover:text-gold-3">

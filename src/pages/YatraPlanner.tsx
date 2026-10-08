@@ -51,7 +51,7 @@ export default function YatraPlanner() {
       <section className="bg-ink text-cream pt-40 pb-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-10">
           <div className="text-[11px] tracking-[0.35em] uppercase text-gold-2 mb-6">Yatra Planner</div>
-          <h1 className="font-display text-5xl md:text-7xl leading-[0.95] max-w-4xl">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl leading-[0.95] max-w-4xl">
             An itinerary <em className="italic text-gold-2">shaped for you.</em>
           </h1>
           <p className="mt-6 font-serif text-lg text-cream/70 max-w-2xl leading-relaxed">
@@ -86,9 +86,9 @@ export default function YatraPlanner() {
                       <p className="mt-3 font-serif italic text-ink/70 leading-relaxed">{p.note}</p>
                     </div>
                     <div className="md:col-span-6 space-y-3">
-                      <div className="flex gap-4"><div className="w-24 text-[10px] tracking-[0.3em] uppercase text-gold-3 pt-1">Morning</div><div className="flex-1 text-ink/80">{p.morning}</div></div>
-                      <div className="flex gap-4"><div className="w-24 text-[10px] tracking-[0.3em] uppercase text-gold-3 pt-1">Afternoon</div><div className="flex-1 text-ink/80">{p.afternoon}</div></div>
-                      <div className="flex gap-4"><div className="w-24 text-[10px] tracking-[0.3em] uppercase text-gold-3 pt-1">Evening</div><div className="flex-1 text-ink/80">{p.evening}</div></div>
+                      <div className="flex flex-col sm:flex-row gap-1 sm:gap-4"><div className="sm:w-24 text-[10px] tracking-[0.3em] uppercase text-gold-3 pt-1 shrink-0">Morning</div><div className="flex-1 min-w-0 text-ink/80">{p.morning}</div></div>
+                      <div className="flex flex-col sm:flex-row gap-1 sm:gap-4"><div className="sm:w-24 text-[10px] tracking-[0.3em] uppercase text-gold-3 pt-1 shrink-0">Afternoon</div><div className="flex-1 min-w-0 text-ink/80">{p.afternoon}</div></div>
+                      <div className="flex flex-col sm:flex-row gap-1 sm:gap-4"><div className="sm:w-24 text-[10px] tracking-[0.3em] uppercase text-gold-3 pt-1 shrink-0">Evening</div><div className="flex-1 min-w-0 text-ink/80">{p.evening}</div></div>
                     </div>
                   </div>
                 ))}
@@ -107,9 +107,9 @@ export default function YatraPlanner() {
                 <div>
                   <div className="text-[11px] tracking-[0.3em] uppercase text-gold-3 mb-3">Question 1 of 4</div>
                   <h3 className="font-display text-3xl md:text-4xl text-ink mb-8">How many days do you have?</h3>
-                  <div className="grid grid-cols-4 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {[2, 3, 5, 7].map((d) => (
-                      <button key={d} onClick={() => setDays(d)} className={`h-24 border font-display text-4xl transition ${days === d ? 'bg-ink text-cream border-ink' : 'border-ink/20 hover:border-ink text-ink'}`}>{d}</button>
+                      <button key={d} onClick={() => setDays(d)} className={`h-20 sm:h-24 border font-display text-3xl sm:text-4xl transition ${days === d ? 'bg-ink text-cream border-ink' : 'border-ink/20 hover:border-ink text-ink'}`}>{d}</button>
                     ))}
                   </div>
                   <button onClick={() => setStep(1)} className="mt-10 inline-flex items-center gap-3 bg-ink text-cream px-8 h-13 py-3 text-[12px] tracking-[0.25em] uppercase hover:bg-gold-3">Continue <ArrowRight className="w-4 h-4" /></button>
@@ -128,7 +128,7 @@ export default function YatraPlanner() {
                       </button>
                     ))}
                   </div>
-                  <div className="mt-10 flex gap-3">
+                  <div className="mt-10 flex flex-wrap gap-3">
                     <button onClick={() => setStep(0)} className="px-6 h-13 py-3 text-[12px] tracking-[0.25em] uppercase border border-ink/20 hover:border-ink">Back</button>
                     <button onClick={() => setStep(2)} className="inline-flex items-center gap-3 bg-ink text-cream px-8 h-13 py-3 text-[12px] tracking-[0.25em] uppercase hover:bg-gold-3">Continue <ArrowRight className="w-4 h-4" /></button>
                   </div>
@@ -150,7 +150,7 @@ export default function YatraPlanner() {
                     <label className="text-[10px] tracking-[0.3em] uppercase text-ink/60">Travellers</label>
                     <input type="number" min={1} max={12} value={travelers} onChange={(e) => setTravelers(Number(e.target.value))} className="mt-2 w-32 border border-ink/20 h-12 px-4 bg-transparent" />
                   </div>
-                  <div className="mt-10 flex gap-3">
+                  <div className="mt-10 flex flex-wrap gap-3">
                     <button onClick={() => setStep(1)} className="px-6 py-3 text-[12px] tracking-[0.25em] uppercase border border-ink/20 hover:border-ink">Back</button>
                     <button onClick={() => setStep(3)} className="inline-flex items-center gap-3 bg-ink text-cream px-8 py-3 text-[12px] tracking-[0.25em] uppercase hover:bg-gold-3">Continue <ArrowRight className="w-4 h-4" /></button>
                   </div>
@@ -174,7 +174,7 @@ export default function YatraPlanner() {
                       );
                     })}
                   </div>
-                  <div className="mt-10 flex gap-3">
+                  <div className="mt-10 flex flex-wrap gap-3">
                     <button onClick={() => setStep(2)} className="px-6 py-3 text-[12px] tracking-[0.25em] uppercase border border-ink/20 hover:border-ink">Back</button>
                     <button onClick={submit} className="inline-flex items-center gap-3 bg-gold text-ink px-8 py-3 text-[12px] tracking-[0.25em] uppercase hover:bg-gold-2">
                       <Sparkles className="w-4 h-4" /> Compose my yatra

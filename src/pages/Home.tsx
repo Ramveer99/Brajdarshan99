@@ -449,7 +449,7 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative h-screen min-h-[720px] w-full overflow-hidden text-cream">
+      <section className="relative min-h-[100svh] w-full overflow-hidden text-cream flex flex-col">
         <div className="absolute inset-0">
           <img
             src={withBase('/images/hero.jpg')}
@@ -460,12 +460,13 @@ export default function Home() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#0b1030_85%)]" />
         </div>
 
-        <div className="relative z-10 h-full max-w-[1400px] mx-auto px-6 lg:px-10 flex flex-col justify-center">
+        <div className="relative z-10 flex-1 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col justify-center [justify-content:safe_center] gap-8 sm:gap-10 pt-28 sm:pt-32 pb-8 sm:pb-10">
+          <div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2 }}
-            className="font-devanagari text-gold-2 text-2xl md:text-3xl tracking-widest"
+            className="font-devanagari text-gold-2 text-xl sm:text-2xl md:text-3xl tracking-wide sm:tracking-widest"
           >
             ब्रजभूमिः सर्वमंगलम्
           </motion.div>
@@ -474,7 +475,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.4, delay: 0.4 }}
-            className="mt-6 font-display text-6xl sm:text-7xl md:text-8xl lg:text-8xl leading-[0.95] tracking-[-0.02em]"
+            className="mt-6 font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] tracking-[-0.02em]"
           >
             The Land Where{' '}
             <em className="font-serif italic text-gold-2">Krishna</em>
@@ -501,7 +502,7 @@ export default function Home() {
           >
             <Link
               to="/destinations"
-              className="group inline-flex items-center gap-3 bg-gold text-ink px-8 h-14 text-ui tracking-[0.12em] font-medium hover:bg-cream transition"
+              className="group inline-flex items-center justify-center gap-3 bg-gold text-ink px-6 sm:px-8 h-12 sm:h-14 text-ui tracking-[0.12em] font-medium hover:bg-cream transition w-full sm:w-auto"
             >
               Begin the darshan
               <ArrowRight
@@ -519,11 +520,12 @@ export default function Home() {
             </Link>
           </motion.div>
 
+          </div>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.6 }}
-            className="absolute bottom-10 left-6 lg:left-10 right-6 lg:right-10 flex items-end justify-between"
+            className="shrink-0 flex items-end justify-between gap-4"
           >
             <div aria-hidden="true" className="flex flex-col items-start">
               <div className="text-caption tracking-[0.35em] uppercase text-cream-soft mb-2">
@@ -570,14 +572,14 @@ export default function Home() {
       </div>
 
       {/* Intro editorial */}
-      <section className="max-w-[1400px] mx-auto px-6 lg:px-10 py-28 md:py-40">
+      <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 py-16 sm:py-28 md:py-40">
         <div className="text-caption tracking-[0.35em] uppercase text-gold-3 mb-6">
           A brief invocation
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           <Reveal className="lg:col-span-5 lg:sticky lg:top-32">
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.02] text-ink">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.02] text-ink">
               A geography <em className="italic text-gold-3">remembered</em>{' '}
               by love.
             </h2>
@@ -606,7 +608,7 @@ export default function Home() {
 
             <div className="pt-6 hair-divider"></div>
 
-            <div className="grid grid-cols-3 gap-6 pt-6">
+            <div className="grid grid-cols-1 min-[420px]:grid-cols-3 gap-6 pt-6">
               {[
                 {
                   icon: Compass,
@@ -909,7 +911,7 @@ export default function Home() {
               The Yatra Planner
             </div>
 
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.02] text-cream">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.02] text-cream">
               A pilgrimage <em className="italic text-gold-2">shaped for you.</em>
             </h2>
 

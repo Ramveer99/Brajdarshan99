@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
-            <div className="font-display text-3xl tracking-[0.2em]">BRAJ DARSHAN</div>
+            <div className="font-display text-2xl sm:text-3xl tracking-[0.14em] sm:tracking-[0.2em]">BRAJ DARSHAN</div>
             <div className="font-devanagari text-gold-2 text-xl mt-2">ब्रज दर्शन</div>
             <p className="mt-4 text-cream-soft leading-relaxed font-serif text-lg italic">
               “Where every stone remembers a footstep, every wind carries a flute-note, and every dawn breaks in the colour of turmeric and rose.”
@@ -47,15 +47,15 @@ export default function Footer() {
             <p className="text-cream-soft text-sm leading-relaxed mb-3">
               A monthly letter of festivals, seasonal parikramas, and quiet notes from Vrindavan’s ghats. No noise, only the essential.
             </p>
-            <form onSubmit={(e) => e.preventDefault()} className="flex">
+            <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row gap-2 sm:gap-0">
               <label htmlFor="newsletter-email" className="sr-only">Email address</label>
               <input
                 id="newsletter-email"
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 bg-cream/5 border-2 border-cream/45 border-r-0 px-4 py-3 text-sm focus:outline-none focus:border-gold focus:bg-cream/10"
+                className="flex-1 min-w-0 bg-cream/5 border-2 border-cream/45 sm:border-r-0 px-4 py-3 text-sm focus:outline-none focus:border-gold focus:bg-cream/10"
               />
-              <button className="px-6 bg-gold text-ink text-caption tracking-[0.25em] uppercase hover:bg-gold-2">Subscribe</button>
+              <button className="px-6 py-3 bg-gold text-ink text-caption tracking-[0.25em] uppercase hover:bg-gold-2">Subscribe</button>
             </form>
           </div>
         </div>

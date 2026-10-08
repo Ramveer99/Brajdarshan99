@@ -25,15 +25,15 @@ export default function TempleDetail() {
 
   return (
     <>
-      <section className="relative h-[70vh] min-h-[500px] text-cream overflow-hidden">
+      <section className="relative min-h-[70svh] text-cream overflow-hidden flex flex-col">
         <img src={withBase(t.image)} alt={t.name} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/40 to-ink" />
-        <div className="relative z-10 h-full max-w-[1400px] mx-auto px-6 lg:px-10 flex flex-col justify-end pb-20">
+        <div className="relative z-10 mt-auto w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 pt-28 pb-12 sm:pb-20">
           <Link to="/temples" className="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-cream/70 hover:text-gold-2 mb-6">
             <ArrowLeft className="w-4 h-4" /> All Temples
           </Link>
           <div className="font-devanagari text-2xl text-gold-2 mb-3">{t.name_hi}</div>
-          <h1 className="font-display text-5xl md:text-7xl leading-[0.95]">{t.name}</h1>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl leading-[0.95] break-words">{t.name}</h1>
           <div className="mt-6 flex flex-wrap gap-6 text-sm text-cream/80">
             <span className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-gold-2" /> Deity · {t.deity}</span>
             <Link to={`/destinations/${t.destination_slug}`} className="flex items-center gap-2 hover:text-gold-2">

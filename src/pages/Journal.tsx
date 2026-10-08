@@ -19,7 +19,7 @@ export default function Journal() {
       <section className="bg-parchment paper-noise pt-40 pb-16">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="text-[11px] tracking-[0.35em] uppercase text-gold-3 mb-6">The Braj Journal</div>
-          <h1 className="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-5xl text-ink">
+          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-5xl text-ink">
             Essays from the <em className="italic text-gold-3">field.</em>
           </h1>
           <p className="mt-8 font-serif text-lg text-ink/70 max-w-2xl leading-relaxed">

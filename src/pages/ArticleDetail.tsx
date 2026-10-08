@@ -18,16 +18,16 @@ export default function ArticleDetail() {
 
   return (
     <>
-      <section className="relative h-[70vh] min-h-[500px] overflow-hidden text-cream">
+      <section className="relative min-h-[70svh] overflow-hidden text-cream flex flex-col">
         <img src={withBase(a.cover_image)} alt={a.title} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/50 to-ink" />
-        <div className="relative z-10 h-full max-w-4xl mx-auto px-6 lg:px-10 flex flex-col justify-end pb-20">
+        <div className="relative z-10 mt-auto w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-10 pt-28 pb-12 sm:pb-20">
           <Link to="/journal" className="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-cream/70 hover:text-gold-2 mb-6">
             <ArrowLeft className="w-4 h-4" /> The Journal
           </Link>
           <div className="text-[10px] tracking-[0.3em] uppercase text-gold-2 mb-4">{a.category}</div>
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.98]">{a.title}</h1>
-          <div className="mt-8 flex items-center gap-4 text-cream/70 text-sm">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.98] break-words">{a.title}</h1>
+          <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-cream/70 text-sm">
             <span>By {a.author}</span>
             <span>―</span>
             <span>{a.published_at}</span>

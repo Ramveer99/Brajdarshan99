@@ -56,28 +56,36 @@ html, body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+img, video {
+  max-width: 100%;
 }
 
 .font-serif { font-family: var(--font-serif); }
 .font-display { font-family: var(--font-display); font-feature-settings: 'ss01'; }
 .font-devanagari { font-family: var(--font-devanagari); }
 
-/* Reusable CTA — “Plan your yatra” site-wide */
-.btn-yatra {
-  @apply inline-flex items-center gap-3 border-2 border-cream/70 bg-ink/55 backdrop-blur-sm px-8 h-14 text-ui tracking-[0.12em] text-cream hover:bg-cream hover:text-ink transition;
-}
+/* Component classes live in a layer so utilities like `hidden` can override them. */
+@layer components {
+  /* Reusable CTA — “Plan your yatra” site-wide */
+  .btn-yatra {
+    @apply inline-flex items-center justify-center gap-3 whitespace-nowrap border-2 border-cream/70 bg-ink/55 backdrop-blur-sm px-5 sm:px-8 h-12 sm:h-14 text-ui tracking-[0.12em] text-cream hover:bg-cream hover:text-ink transition max-w-full;
+  }
 
-.btn-yatra--compact {
-  @apply h-10 gap-2 px-5;
-}
+  .btn-yatra--compact {
+    @apply h-10 gap-2 px-4 sm:px-5;
+  }
 
-/* Section archive / “view all” links */
-.section-link {
-  @apply inline-flex items-center gap-2 shrink-0 text-body-sm tracking-[0.12em] text-ink border-b-2 border-ink/30 pb-1 font-semibold hover:text-gold-3 hover:border-gold-3 transition-colors;
-}
+  /* Section archive / “view all” links */
+  .section-link {
+    @apply inline-flex items-center gap-2 shrink-0 text-body-sm tracking-[0.12em] text-ink border-b-2 border-ink/30 pb-1 font-semibold hover:text-gold-3 hover:border-gold-3 transition-colors;
+  }
 
-.section-link--dark {
-  @apply text-cream border-cream/30 hover:text-gold-2 hover:border-gold-2;
+  .section-link--dark {
+    @apply text-cream border-cream/30 hover:text-gold-2 hover:border-gold-2;
+  }
 }
 
 .hair-divider {
