@@ -41,13 +41,8 @@ function createVercelResponse(res) {
   return response;
 }
 
-export function apiDevPlugin(envVars = {}) {
-  return {
-    name: 'vercel-api-dev',
-    configureServer(server) {
-      Object.assign(process.env, envVars);
-
-      server.middlewares.use(async (req, res, next) => {
+function attachApi(server) {
+  server.middlewares.use(async (req, res, next) => {
         let rawUrl = req.url || '';
         // App is served under /braj, so API calls arrive as /braj/api/...
         if (rawUrl === '/braj' || rawUrl.startsWith('/braj/')) {
@@ -95,6 +90,24 @@ export function apiDevPlugin(envVars = {}) {
           }
         }
       });
+}
+
+export function apiDevPlugin(envVars = {}) {
+  const applyEnv = () => {
+    Object.assign(process.env, envVars);
+  };
+
+  return {
+    name: 'vercel-api-dev',
+    configureServer(server) {
+      applyEnv();
+      attachApi(server);
+    },
+    // `vite preview` serves dist/ and falls back to index.html.
+    // Register the API before that fallback so /api/* returns JSON.
+    configurePreviewServer(server) {
+      applyEnv();
+      attachApi(server);
     },
   };
 }
