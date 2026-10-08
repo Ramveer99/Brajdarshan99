@@ -31,6 +31,18 @@ export default function Header() {
   const [mega, setMega] = useState(false);
   const [mounted, setMounted] = useState(false);
   const loc = useLocation();
+  // Cream nav text is only readable over a dark hero. Journal index and 404 open on parchment.
+  const darkTop =
+    loc.pathname === '/' ||
+    loc.pathname.startsWith('/destinations') ||
+    loc.pathname.startsWith('/temples') ||
+    loc.pathname === '/experiences' ||
+    loc.pathname === '/routes' ||
+    loc.pathname === '/planner' ||
+    loc.pathname === '/guide' ||
+    loc.pathname === '/festivals' ||
+    /^\/journal\/.+/.test(loc.pathname);
+  const solid = scrolled || !darkTop;
 
   useEffect(() => setMounted(true), []);
 
@@ -47,7 +59,7 @@ export default function Header() {
     <header
       role="banner"
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled
+        solid
           ? 'bg-cream/85 backdrop-blur-xl border-b border-ink/10'
           : 'bg-transparent border-b border-transparent'
       }`}
@@ -58,15 +70,15 @@ export default function Header() {
           <Link to="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
             <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0">
               <svg viewBox="0 0 40 40" className="w-full h-full">
-                <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" strokeWidth="0.75" className={scrolled ? 'text-ink/70' : 'text-cream/90'} />
+                <circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" strokeWidth="0.75" className={solid ? 'text-ink/70' : 'text-cream/90'} />
                 <circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-gold" />
                 <path d="M20 8 C 24 14, 24 26, 20 32 C 16 26, 16 14, 20 8 Z" fill="currentColor" className="text-gold" />
-                <circle cx="20" cy="20" r="2" fill="currentColor" className={scrolled ? 'text-ink' : 'text-cream'} />
+                <circle cx="20" cy="20" r="2" fill="currentColor" className={solid ? 'text-ink' : 'text-cream'} />
               </svg>
             </div>
             <div className="leading-tight">
-              <div className={`font-display text-sm sm:text-lg xl:text-xl tracking-[0.08em] sm:tracking-[0.16em] xl:tracking-[0.22em] whitespace-nowrap ${scrolled ? 'text-ink' : 'text-cream'}`}>BRAJ DARSHAN</div>
-              <div className={`text-[9px] sm:text-2xs tracking-[0.12em] sm:tracking-[0.22em] xl:tracking-[0.28em] uppercase whitespace-nowrap ${scrolled ? 'text-ink-muted' : 'text-cream-soft'}`}>— Uttar Pradesh, Bhārat</div>
+              <div className={`font-display text-sm sm:text-lg xl:text-xl tracking-[0.08em] sm:tracking-[0.16em] xl:tracking-[0.22em] whitespace-nowrap ${solid ? 'text-ink' : 'text-cream'}`}>BRAJ DARSHAN</div>
+              <div className={`text-[9px] sm:text-2xs tracking-[0.12em] sm:tracking-[0.22em] xl:tracking-[0.28em] uppercase whitespace-nowrap ${solid ? 'text-ink-muted' : 'text-cream-soft'}`}>— Uttar Pradesh, Bhārat</div>
             </div>
           </Link>
 
@@ -86,7 +98,7 @@ export default function Header() {
                   to={item.to}
                   className={({ isActive }) =>
                     `px-4 h-10 text-ui tracking-[0.12em] font-medium whitespace-nowrap flex items-center gap-1 transition-colors ${
-                      scrolled ? 'text-ink hover:text-gold-3' : 'text-cream hover:text-gold-2'
+                      solid ? 'text-ink hover:text-gold-3' : 'text-cream hover:text-gold-2'
                     } ${isActive ? 'text-gold-3!' : ''}`
                   }
                 >
@@ -131,24 +143,29 @@ export default function Header() {
           </nav>
 
           {/* Right actions */}
-          <div className="flex items-center gap-2 shrink-0">
-            <button aria-label="Search" className={`hidden sm:flex items-center justify-center w-10 h-10 rounded-full border transition ${scrolled ? 'border-ink/15 text-ink hover:bg-ink hover:text-cream' : 'border-cream/40 text-cream hover:bg-cream hover:text-ink'}`}>
-              <Search className="w-4 h-4" />
+          <div className="flex items-center gap-1 shrink-0">
+            <button
+              aria-label="Search"
+              className={`hidden sm:inline-flex items-center justify-center w-10 h-10 rounded-full transition-colors ${
+                solid
+                  ? 'text-ink/70 hover:text-ink hover:bg-ink/5'
+                  : 'text-cream/85 hover:text-cream hover:bg-cream/10'
+              }`}
+            >
+              <Search className="w-[18px] h-[18px]" strokeWidth={1.75} />
             </button>
             <Link
               to="/planner"
-              className={`btn-yatra btn-yatra--compact hidden xl:inline-flex whitespace-nowrap ${
-                scrolled ? '!bg-ink !border-ink hover:!bg-gold-3 hover:!border-gold-3' : ''
-              }`}
+              className="group hidden xl:inline-flex items-center gap-2 h-10 px-4 bg-gold text-ink text-ui tracking-[0.12em] font-medium whitespace-nowrap hover:bg-gold-2 transition-colors"
             >
               Plan your yatra
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
             <button
               aria-label="Menu"
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className={`xl:hidden flex items-center justify-center w-10 h-10 rounded-full border ${scrolled ? 'border-ink/20 text-ink' : 'border-cream/50 text-cream'}`}
+              className={`xl:hidden flex items-center justify-center w-10 h-10 rounded-full border ${solid ? 'border-ink/20 text-ink' : 'border-cream/50 text-cream'}`}
             >
               {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>

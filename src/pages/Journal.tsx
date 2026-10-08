@@ -4,31 +4,42 @@ import { apiGet } from '../lib/api';
 import { withBase } from '../lib/base';
 import Loading from '../components/Loading';
 import Reveal from '../components/Reveal';
+import FadeIn from '../components/FadeIn';
+import { FEATURED_ARTICLES } from '../data/fallbackContent';
 
 type A = { slug: string; title: string; category: string; excerpt: string; cover_image: string; author: string; published_at: string; read_time: string };
+
+const FALLBACK_ARTICLES: A[] = FEATURED_ARTICLES.map((a) => ({ ...a, author: 'Braj Darshan' }));
 
 export default function Journal() {
   const [items, setItems] = useState<A[]>([]);
   const [loading, setLoading] = useState(true);
-  useEffect(() => { apiGet<A[]>('/api/articles').then(setItems).catch(() => {}).finally(() => setLoading(false)); }, []);
+  useEffect(() => {
+    apiGet<A[]>('/api/articles')
+      .then((data) => setItems(Array.isArray(data) && data.length ? data : FALLBACK_ARTICLES))
+      .catch(() => setItems(FALLBACK_ARTICLES))
+      .finally(() => setLoading(false));
+  }, []);
 
   const [featured, ...rest] = items;
 
   return (
     <>
-      <section className="bg-parchment paper-noise pt-40 pb-16">
+      <section className="bg-parchment paper-noise pt-28 pb-10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="text-[11px] tracking-[0.35em] uppercase text-gold-3 mb-6">The Braj Journal</div>
-          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-5xl text-ink">
-            Essays from the <em className="italic text-gold-3">field.</em>
-          </h1>
-          <p className="mt-8 font-serif text-lg text-ink/70 max-w-2xl leading-relaxed">
-            An editorial archive of long reads, oral histories, and reflective notes gathered from Braj’s ghats, groves and quiet corners.
-          </p>
+          <FadeIn>
+            <div className="text-[11px] tracking-[0.35em] uppercase text-gold-3 mb-6">The Braj Journal</div>
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-5xl text-ink">
+              Essays from the <em className="italic text-gold-3">field.</em>
+            </h1>
+            <p className="mt-8 font-serif text-lg text-ink/70 max-w-2xl leading-relaxed">
+              An editorial archive of long reads, oral histories, and reflective notes gathered from Braj’s ghats, groves and quiet corners.
+            </p>
+          </FadeIn>
         </div>
       </section>
 
-      <section className="bg-parchment py-16 md:py-24">
+      <section className="bg-parchment py-10 md:py-14">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           {loading ? <Loading /> : (
             <>

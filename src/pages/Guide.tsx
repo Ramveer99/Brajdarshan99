@@ -1,4 +1,5 @@
 import Reveal from '../components/Reveal';
+import FadeIn from '../components/FadeIn';
 import { Plane, Train, Utensils, Shirt, HandHeart, Sparkles, Sun, Cloud } from 'lucide-react';
 
 export default function Guide() {
@@ -55,19 +56,21 @@ export default function Guide() {
 
   return (
     <>
-      <section className="bg-ink text-cream pt-40 pb-24">
+      <section className="bg-ink text-cream pt-28 pb-12">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="text-[11px] tracking-[0.35em] uppercase text-gold-2 mb-6">The Travel Guide</div>
-          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-5xl">
-            Everything a first pilgrim <em className="italic text-gold-2">needs to know.</em>
-          </h1>
-          <p className="mt-8 font-serif text-lg text-cream/70 max-w-2xl leading-relaxed">
-            The practical, the useful and the quietly essential—gathered from residents of Braj so that your first journey feels like your fifth.
-          </p>
+          <FadeIn>
+            <div className="text-[11px] tracking-[0.35em] uppercase text-gold-2 mb-6">The Travel Guide</div>
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-5xl">
+              Everything a first pilgrim <em className="italic text-gold-2">needs to know.</em>
+            </h1>
+            <p className="mt-8 font-serif text-lg text-cream/70 max-w-2xl leading-relaxed">
+              The practical, the useful and the quietly essential—gathered from residents of Braj so that your first journey feels like your fifth.
+            </p>
+          </FadeIn>
         </div>
       </section>
 
-      <section className="bg-cream py-24 md:py-32">
+      <section className="bg-cream py-12 md:py-16">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-10 space-y-24">
           {sections.map((s, i) => (
             <Reveal key={i} delay={i * 0.03}>

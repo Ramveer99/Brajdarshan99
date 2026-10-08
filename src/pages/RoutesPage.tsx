@@ -3,31 +3,40 @@ import { apiGet } from '../lib/api';
 import { withBase } from '../lib/base';
 import Loading from '../components/Loading';
 import Reveal from '../components/Reveal';
+import FadeIn from '../components/FadeIn';
 import { Route, Clock, Mountain } from 'lucide-react';
 import RouteTimeline from '../components/RouteTimeline';
+import { PILGRIMAGE_ROUTES, type PilgrimageRoute } from '../data/fallbackContent';
 
-type R = { slug: string; name: string; duration_days: number; description: string; difficulty: string; stops: string[]; image: string; category: string };
+type R = PilgrimageRoute;
 
 export default function RoutesPage() {
   const [items, setItems] = useState<R[]>([]);
   const [loading, setLoading] = useState(true);
-  useEffect(() => { apiGet<R[]>('/api/routes').then(setItems).catch(() => {}).finally(() => setLoading(false)); }, []);
+  useEffect(() => {
+    apiGet<R[]>('/api/routes')
+      .then((data) => setItems(Array.isArray(data) && data.length ? data : PILGRIMAGE_ROUTES))
+      .catch(() => setItems(PILGRIMAGE_ROUTES))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <>
-      <section className="bg-ink text-cream pt-40 pb-24">
+      <section className="bg-ink text-cream pt-28 pb-12">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="text-[11px] tracking-[0.35em] uppercase text-gold-2 mb-6">Pilgrimage Routes</div>
-          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-5xl">
-            The old <em className="italic text-gold-2">parikramas.</em>
-          </h1>
-          <p className="mt-8 font-serif text-lg text-cream/70 max-w-2xl leading-relaxed">
-            To walk around a sacred place is to gather it into oneself. From a two-hour lap of Vrindavan’s inner ring to the great forty-day Chaurasi Kos—choose the circle your heart is ready for.
-          </p>
+          <FadeIn>
+            <div className="text-[11px] tracking-[0.35em] uppercase text-gold-2 mb-6">Pilgrimage Routes</div>
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-5xl">
+              The old <em className="italic text-gold-2">parikramas.</em>
+            </h1>
+            <p className="mt-8 font-serif text-lg text-cream/70 max-w-2xl leading-relaxed">
+              To walk around a sacred place is to gather it into oneself. From a two-hour lap of Vrindavan’s inner ring to the great forty-day Chaurasi Kos—choose the circle your heart is ready for.
+            </p>
+          </FadeIn>
         </div>
       </section>
 
-      <section className="bg-cream py-20 md:py-28">
+      <section className="bg-cream py-12 md:py-16">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           {loading ? <Loading /> : (
             <div className="space-y-8">

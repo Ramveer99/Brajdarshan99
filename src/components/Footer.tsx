@@ -4,7 +4,7 @@ import { Instagram, Twitter, Youtube, Mail } from 'lucide-react';
 export default function Footer() {
   return (
     <footer className="bg-ink text-cream mt-32">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
             <div className="font-display text-2xl sm:text-3xl tracking-[0.14em] sm:tracking-[0.2em]">BRAJ DARSHAN</div>

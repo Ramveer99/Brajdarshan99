@@ -174,7 +174,7 @@
 //       </section>
 
 //       {/* Destinations */}
-//       <section id="destinations" className="bg-parchment paper-noise py-28 md:py-36">
+//       <section id="destinations" className="bg-parchment paper-noise py-12 md:py-16">
 //         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
 //           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-10">
 //             <Reveal className="max-w-3xl">
@@ -217,7 +217,7 @@
 //       </section>
 
 //       {/* Interactive Map */}
-//       <section className="bg-ink text-cream py-28 md:py-36">
+//       <section className="bg-ink text-cream py-12 md:py-16">
 //         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
 //           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 //             <Reveal className="lg:col-span-4">
@@ -241,7 +241,7 @@
 //       </section>
 
 //       {/* Experiences */}
-//       <section className="bg-cream py-28 md:py-36">
+//       <section className="bg-cream py-12 md:py-16">
 //         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
 //           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-16">
 //             <Reveal>
@@ -286,7 +286,7 @@
 //       </section>
 
 //       {/* Festivals */}
-//       <section className="bg-parchment py-28 md:py-36">
+//       <section className="bg-parchment py-12 md:py-16">
 //         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
 //           <div className="flex items-end justify-between mb-16 flex-wrap gap-6">
 //             <Reveal>
@@ -323,7 +323,7 @@
 //       </section>
 
 //       {/* Yatra planner CTA */}
-//       <section className="bg-ink text-cream py-28 md:py-36">
+//       <section className="bg-ink text-cream py-12 md:py-16">
 //         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-center">
 //           <Reveal className="lg:col-span-6">
 //             <div className="text-caption tracking-[0.35em] uppercase text-gold-2 mb-4">The Yatra Planner</div>
@@ -347,7 +347,7 @@
 //       </section>
 
 //       {/* Journal */}
-//       <section className="bg-cream py-28 md:py-36">
+//       <section className="bg-cream py-12 md:py-16">
 //         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
 //           <div className="flex items-end justify-between mb-16 flex-wrap gap-6">
 //             <Reveal>
@@ -572,12 +572,12 @@ export default function Home() {
       </div>
 
       {/* Intro editorial */}
-      <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 py-16 sm:py-28 md:py-40">
+      <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-14 md:py-16">
         <div className="text-caption tracking-[0.35em] uppercase text-gold-3 mb-6">
           A brief invocation
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           <Reveal className="lg:col-span-5 lg:sticky lg:top-32">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.02] text-ink">
               A geography <em className="italic text-gold-3">remembered</em>{' '}
@@ -647,7 +647,7 @@ export default function Home() {
       {/* Destinations */}
       <section
         id="destinations"
-        className="bg-parchment paper-noise py-28 md:py-36"
+        className="bg-parchment paper-noise py-12 md:py-16"
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           {/* FIX: Keep heading and View All action visually connected */}
@@ -723,7 +723,7 @@ export default function Home() {
       </section>
 
       {/* Interactive Map */}
-      <section className="bg-ink text-cream py-28 md:py-36">
+      <section className="bg-ink text-cream py-12 md:py-16">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <Reveal className="lg:col-span-4 mt-8">
@@ -767,7 +767,7 @@ export default function Home() {
       </section>
 
       {/* Experiences */}
-      <section className="bg-cream py-28 md:py-36">
+      <section className="bg-cream py-12 md:py-16">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="mb-16">
             <Reveal className="max-w-3xl">
@@ -810,7 +810,7 @@ export default function Home() {
       </section>
 
       {/* Quote block */}
-      <section className="relative py-32 md:py-44 bg-ink text-cream overflow-hidden">
+      <section className="relative py-14 md:py-20 bg-ink text-cream overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <img
             src={withBase('/images/peacock.jpg')}
@@ -820,7 +820,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/70 to-ink/40"></div>
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-10 text-center">
+        <Reveal className="relative z-10 max-w-4xl mx-auto px-6 lg:px-10 text-center">
           <div className="font-devanagari text-gold-2 text-2xl mb-8">
             ―― ✧ ――
           </div>
@@ -833,11 +833,11 @@ export default function Home() {
           <div className="mt-8 text-caption tracking-[0.35em] uppercase text-gold-2">
             ― Chaitanya Charitamrita, Madhya-lila
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Festivals */}
-      <section className="bg-parchment py-28 md:py-36">
+      <section className="bg-parchment py-12 md:py-16">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="flex items-end justify-between mb-16 flex-wrap gap-6">
             <Reveal>
@@ -904,7 +904,7 @@ export default function Home() {
       </section>
 
       {/* Yatra planner CTA */}
-      <section className="bg-ink text-cream py-28 md:py-36">
+      <section className="bg-ink text-cream py-12 md:py-16">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-center">
           <Reveal className="lg:col-span-6">
             <div className="text-caption tracking-[0.35em] uppercase text-gold-2 mb-4">
@@ -949,7 +949,7 @@ export default function Home() {
       </section>
 
       {/* Journal */}
-      <section className="bg-cream py-28 md:py-36">
+      <section className="bg-cream py-12 md:py-16">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="flex items-end justify-between mb-16 flex-wrap gap-6">
             <Reveal>

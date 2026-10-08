@@ -37,6 +37,17 @@ export type Festival = {
   image: string;
 };
 
+export type PilgrimageRoute = {
+  slug: string;
+  name: string;
+  duration_days: number;
+  description: string;
+  difficulty: string;
+  stops: string[];
+  image: string;
+  category: string;
+};
+
 export type DestinationPage = Destination & {
   deity: string;
   description: string;
@@ -214,6 +225,49 @@ export const FEATURED_ARTICLES: Article[] = [
   { slug: 'first-light-vrindavan', title: 'First Light in Vrindavan', category: 'Field Notes', excerpt: 'Before the bells ring, the ghats belong to the river and the tulsi sellers.', cover_image: '/images/aarti.jpg', read_time: '8 min', published_at: '2026-01-15' },
   { slug: 'govardhan-silence', title: 'The Silence of Govardhan', category: 'Essay', excerpt: 'On the hill where the sky was lifted, pilgrims still walk barefoot in gratitude.', cover_image: '/images/parikrama.jpg', read_time: '12 min', published_at: '2026-02-02' },
   { slug: 'barsana-memory', title: 'Memory in Barsana', category: 'Oral History', excerpt: 'Grandmothers on the hill recount Radha’s childhood as if it were yesterday.', cover_image: '/images/peacock.jpg', read_time: '10 min', published_at: '2026-02-20' },
+];
+
+export const PILGRIMAGE_ROUTES: PilgrimageRoute[] = [
+  {
+    slug: 'vrindavan-parikrama',
+    name: 'Vrindavan Parikrama',
+    duration_days: 1,
+    description: 'A two-hour lap of Vrindavan’s inner ring, from the ghats through the groves where the evening bells begin.',
+    difficulty: 'Easy',
+    stops: ['Keshi Ghat', 'Banke Bihari', 'Radha Raman', 'Nidhivan', 'Seva Kunj', 'Keshi Ghat'],
+    image: '/images/vrindavan.jpg',
+    category: 'Inner circuit',
+  },
+  {
+    slug: 'govardhan-parikrama',
+    name: 'Govardhan Parikrama',
+    duration_days: 1,
+    description: 'A barefoot circuit of the hill Krishna lifted, begun at dawn from Manasi Ganga and closed before the heat.',
+    difficulty: 'Moderate',
+    stops: ['Manasi Ganga', 'Daan Ghati', 'Radha Kund', 'Kusum Sarovar', 'Punchari', 'Manasi Ganga'],
+    image: '/images/parikrama.jpg',
+    category: 'Hill circuit',
+  },
+  {
+    slug: 'barsana-nandgaon',
+    name: 'Barsana–Nandgaon',
+    duration_days: 1,
+    description: 'A day’s walk between Radha’s hill and Nand Baba’s village, with the fields of Raval in between.',
+    difficulty: 'Easy',
+    stops: ['Barsana', 'Sankari Khor', 'Raval', 'Nandgaon', 'Barsana'],
+    image: '/images/barsana.jpg',
+    category: 'Village circuit',
+  },
+  {
+    slug: 'chaurasi-kos',
+    name: 'Braj Chaurasi Kos',
+    duration_days: 40,
+    description: 'The great forty-day circle of Braj, gathering Mathura, the forests, the hill, and the villages into one walk.',
+    difficulty: 'Demanding',
+    stops: ['Mathura', 'Vrindavan', 'Gokul', 'Barsana', 'Nandgaon', 'Govardhan', 'Mathura'],
+    image: '/images/govardhan.jpg',
+    category: 'Great circuit',
+  },
 ];
 
 export const FEATURED_FESTIVALS: Festival[] = [

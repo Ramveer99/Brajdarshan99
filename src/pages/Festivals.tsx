@@ -3,29 +3,38 @@ import { apiGet } from '../lib/api';
 import { withBase } from '../lib/base';
 import Loading from '../components/Loading';
 import Reveal from '../components/Reveal';
+import FadeIn from '../components/FadeIn';
+import { FEATURED_FESTIVALS, type Festival } from '../data/fallbackContent';
 
-type F = { name: string; month: string; description: string; destination: string; image: string };
+type F = Festival;
 
 export default function Festivals() {
   const [items, setItems] = useState<F[]>([]);
   const [loading, setLoading] = useState(true);
-  useEffect(() => { apiGet<F[]>('/api/festivals').then(setItems).catch(() => {}).finally(() => setLoading(false)); }, []);
+  useEffect(() => {
+    apiGet<F[]>('/api/festivals')
+      .then((data) => setItems(Array.isArray(data) && data.length ? data : FEATURED_FESTIVALS))
+      .catch(() => setItems(FEATURED_FESTIVALS))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <>
-      <section className="bg-ink text-cream pt-40 pb-24">
+      <section className="bg-ink text-cream pt-28 pb-12">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="text-[11px] tracking-[0.35em] uppercase text-gold-2 mb-6">The Utsav Calendar</div>
-          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-5xl">
-            A whole year of <em className="italic text-gold-2">bhakti.</em>
-          </h1>
-          <p className="mt-8 font-serif text-lg text-cream/70 max-w-2xl leading-relaxed">
-            The Braj calendar is a rotating stage of festivals—each rooted in a leela, each moving the land through a season of colour, sound and sweet.
-          </p>
+          <FadeIn>
+            <div className="text-[11px] tracking-[0.35em] uppercase text-gold-2 mb-6">The Utsav Calendar</div>
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-5xl">
+              A whole year of <em className="italic text-gold-2">bhakti.</em>
+            </h1>
+            <p className="mt-8 font-serif text-lg text-cream/70 max-w-2xl leading-relaxed">
+              The Braj calendar is a rotating stage of festivals—each rooted in a leela, each moving the land through a season of colour, sound and sweet.
+            </p>
+          </FadeIn>
         </div>
       </section>
 
-      <section className="bg-cream py-20 md:py-28">
+      <section className="bg-cream py-12 md:py-16">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           {loading ? <Loading /> : (
             <div className="space-y-6">

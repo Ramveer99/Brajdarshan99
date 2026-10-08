@@ -3,6 +3,7 @@ import { apiGet } from '../lib/api';
 import TempleCard from '../components/TempleCard';
 import Loading from '../components/Loading';
 import Reveal from '../components/Reveal';
+import FadeIn from '../components/FadeIn';
 
 type T = { slug: string; name: string; name_hi: string; deity: string; destination_slug: string; image: string };
 type D = { slug: string; name: string };
@@ -26,19 +27,21 @@ export default function Temples() {
 
   return (
     <>
-      <section className="bg-ink text-cream pt-40 pb-24">
+      <section className="bg-ink text-cream pt-28 pb-12">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="text-[11px] tracking-[0.35em] uppercase text-gold-2 mb-6">Mandirs of Braj</div>
-          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-4xl">
-            Doorways of <em className="italic text-gold-2">darshan</em>.
-          </h1>
-          <p className="mt-8 font-serif text-lg text-cream/70 max-w-2xl leading-relaxed">
-            From Krishna Janmabhoomi in Mathura to the deep silence of Radharaman in Vrindavan—the temples of Braj range from vast pilgrimage complexes to hidden courtyards behind narrow lanes. Each is worth its own morning.
-          </p>
+          <FadeIn>
+            <div className="text-[11px] tracking-[0.35em] uppercase text-gold-2 mb-6">Mandirs of Braj</div>
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] max-w-4xl">
+              Doorways of <em className="italic text-gold-2">darshan</em>.
+            </h1>
+            <p className="mt-8 font-serif text-lg text-cream/70 max-w-2xl leading-relaxed">
+              From Krishna Janmabhoomi in Mathura to the deep silence of Radharaman in Vrindavan—the temples of Braj range from vast pilgrimage complexes to hidden courtyards behind narrow lanes. Each is worth its own morning.
+            </p>
+          </FadeIn>
         </div>
       </section>
 
-      <section className="bg-cream py-16">
+      <section className="bg-cream py-10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="flex flex-wrap gap-2 mb-10">
             {options.map((o) => (
