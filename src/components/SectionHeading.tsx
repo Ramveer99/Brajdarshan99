@@ -20,7 +20,7 @@ export default function SectionHeading({ eyebrow, title, subtitle, align = 'left
           {eyebrow}
         </div>
       )}
-      <h2 className={`font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] ${titleCls}`}>{title}</h2>
+      <h2 className={`font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.05] ${titleCls}`}>{title}</h2>
       {subtitle && <p className={`mt-6 font-serif italic text-lg md:text-xl ${subCls}`}>{subtitle}</p>}
     </div>
   );

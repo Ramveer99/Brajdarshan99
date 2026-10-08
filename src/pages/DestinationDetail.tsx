@@ -59,17 +59,17 @@ export default function DestinationDetail() {
   return (
     <>
       {/* Hero */}
-      <section className="relative h-[85vh] min-h-[600px] w-full overflow-hidden text-cream">
+      <section className="relative min-h-[100svh] w-full overflow-hidden text-cream flex flex-col">
         <img src={withBase(d.hero_image)} alt={d.name} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/30 to-ink" />
-        <div className="relative z-10 h-full max-w-[1400px] mx-auto px-6 lg:px-10 flex flex-col justify-end pb-20">
+        <div className="relative z-10 mt-auto w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 pt-28 pb-10 sm:pb-16">
           <Link to="/destinations" className="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-cream/70 hover:text-gold-2 mb-6">
             <ArrowLeft className="w-4 h-4" /> All Destinations
           </Link>
-          <div className="font-devanagari text-3xl md:text-4xl text-gold-2 mb-4">{d.name_hi}</div>
-          <h1 className="font-display text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-[-0.02em]">{d.name}</h1>
-          <p className="mt-6 font-serif italic text-xl md:text-2xl text-cream/85 max-w-2xl">{d.tagline}</p>
-          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl text-sm">
+          <div className="font-devanagari text-2xl sm:text-3xl md:text-4xl text-gold-2 mb-4">{d.name_hi}</div>
+          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.9] tracking-[-0.02em] break-words">{d.name}</h1>
+          <p className="mt-6 font-serif italic text-lg sm:text-xl md:text-2xl text-cream/85 max-w-2xl">{d.tagline}</p>
+          <div className="mt-8 sm:mt-10 grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-5 sm:gap-6 max-w-3xl text-sm">
             <div>
               <div className="text-[10px] tracking-[0.3em] uppercase text-gold-2">Presiding</div>
               <div className="mt-1 font-serif text-lg">{d.deity}</div>
@@ -91,11 +91,11 @@ export default function DestinationDetail() {
       </section>
 
       {/* Story */}
-      <section className="bg-cream py-28 md:py-36">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-14">
+      <section className="bg-cream py-16 sm:py-28 md:py-36">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
           <Reveal className="lg:col-span-5 lg:sticky lg:top-32 h-fit">
             <div className="text-[11px] tracking-[0.35em] uppercase text-gold-3 mb-5">The Story</div>
-            <h2 className="font-display text-5xl md:text-6xl leading-[1.02] text-ink">
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.02] text-ink">
               Why <em className="italic text-gold-3">{d.name}</em> matters.
             </h2>
             <p className="mt-8 font-serif text-lg text-ink/70 italic">{d.description}</p>
@@ -210,7 +210,7 @@ export default function DestinationDetail() {
             <div className="text-[11px] tracking-[0.3em] uppercase text-gold-3 mb-3">Continue the Darshan</div>
             <h3 className="font-display text-3xl md:text-4xl text-ink">Explore another sacred village of Braj.</h3>
           </div>
-          <Link to="/destinations" className="inline-flex items-center gap-3 bg-ink text-cream px-8 h-14 text-[12px] tracking-[0.25em] uppercase hover:bg-gold-3 transition">
+          <Link to="/destinations" className="inline-flex items-center justify-center gap-3 bg-ink text-cream px-6 sm:px-8 h-14 text-[12px] tracking-[0.2em] sm:tracking-[0.25em] uppercase hover:bg-gold-3 transition w-full sm:w-auto">
             All destinations <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
