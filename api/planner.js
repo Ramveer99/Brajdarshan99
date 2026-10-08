@@ -1,5 +1,3 @@
-import supabase from './db-client.js';
-
 const ROUTES = {
   mathura: ['Mathura', 'Vrindavan', 'Gokul', 'Govardhan', 'Barsana', 'Nandgaon', 'Kokilavan', 'Baldeo', 'Raval'],
   vrindavan: ['Vrindavan', 'Mathura', 'Gokul', 'Govardhan', 'Barsana', 'Nandgaon', 'Kokilavan', 'Baldeo', 'Raval'],
@@ -163,6 +161,27 @@ const NARRATIVES = {
   },
 };
 
+function readBody(body) {
+  if (body == null) return {};
+  if (typeof body === 'string') {
+    try { return JSON.parse(body); } catch { return {}; }
+  }
+  if (Buffer.isBuffer(body)) {
+    try { return JSON.parse(body.toString('utf8')); } catch { return {}; }
+  }
+  return body;
+}
+
+/** Analytics only. Must not load or block the itinerary when Supabase is unset. */
+function recordRequest(row) {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) return;
+  import('./db-client.js')
+    .then((mod) => mod.default.from('planner_requests').insert(row))
+    .catch(() => {});
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -171,9 +190,8 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'POST') {
-      const { days = 3, start = 'mathura', pilgrimType = 'devotional', interests = [] } = req.body || {};
-      // Optional touch: log request row for analytics if a table exists
-      try { await supabase.from('planner_requests').insert({ days, start, pilgrim_type: pilgrimType, interests }); } catch {}
+      const { days = 3, start = 'mathura', pilgrimType = 'devotional', interests = [] } = readBody(req.body);
+      recordRequest({ days, start, pilgrim_type: pilgrimType, interests });
 
       const order = ROUTES[start] || ROUTES.mathura;
       const clampedDays = Math.max(1, Math.min(9, Number(days) || 3));

@@ -27,6 +27,7 @@ export default function YatraPlanner() {
   const [interests, setInterests] = useState<string[]>(['temples', 'aarti']);
   const [plan, setPlan] = useState<Plan[] | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => { apiGet<D[]>('/api/destinations').then(setDests).catch(() => {}); }, []);
 
@@ -34,10 +35,14 @@ export default function YatraPlanner() {
 
   const submit = async () => {
     setLoading(true);
+    setError('');
     try {
       const res = await apiPost<{ plan: Plan[] }>('/api/planner', { days, pilgrimType, start, travelers, interests });
+      if (!res.plan?.length) throw new Error('Empty plan');
       setPlan(res.plan);
       setStep(4);
+    } catch {
+      setError('The yatra could not be composed. Please try again.');
     } finally { setLoading(false); }
   };
 
@@ -177,10 +182,11 @@ export default function YatraPlanner() {
                     </div>
                     <div className="mt-10 flex flex-wrap gap-3">
                       <button onClick={() => setStep(2)} className="px-6 py-3 text-[12px] tracking-[0.25em] uppercase border border-ink/20 hover:border-ink">Back</button>
-                      <button onClick={submit} className="inline-flex items-center gap-3 bg-gold text-ink px-8 py-3 text-[12px] tracking-[0.25em] uppercase hover:bg-gold-2">
+                      <button type="button" onClick={submit} className="inline-flex items-center gap-3 bg-gold text-ink px-8 py-3 text-[12px] tracking-[0.25em] uppercase hover:bg-gold-2 rounded-sm shadow-sm">
                         <Sparkles className="w-4 h-4" /> Compose my yatra
                       </button>
                     </div>
+                    {error && <p className="mt-4 text-sm text-ink/70">{error}</p>}
                   </motion.div>
                 )}
               </AnimatePresence>
